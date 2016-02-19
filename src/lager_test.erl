@@ -3,13 +3,11 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module(lager_test_app).
-
--behaviour(application).
+-module(lager_test).
 
 %% Application callbacks
--export([start/0, start/2
-        , stop/0, stop/1]).
+-export([start/0
+        , stop/0]).
 
 %%====================================================================
 %% API
@@ -17,7 +15,7 @@
 
 start()->
     lager:start(),
-    application:start(?MODULE). 
+    start(normal, []). 
 
 start(_StartType, _StartArgs) ->
     lager_test_sup:start_link().
@@ -25,9 +23,6 @@ start(_StartType, _StartArgs) ->
 %%--------------------------------------------------------------------
 stop()->
     ok = lager:clear_all_sinks(),
-    application:stop(?MODULE). 
-
-stop(_State) ->
     ok.
 
 %%====================================================================
