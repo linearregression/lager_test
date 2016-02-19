@@ -1,0 +1,11 @@
+{application,lager_test,
+             [{description,"An OTP application"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{lager_test_app,[]}},
+              {applications,[kernel,stdlib]},
+              {env,[]},
+              {modules,[lager_test_app,lager_test_sup]},
+              {maintainers,[]},
+              {licenses,[]},
+              {links,[]}]}.
