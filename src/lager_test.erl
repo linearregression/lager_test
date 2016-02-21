@@ -15,6 +15,7 @@
 
 start()->
     lager:start(),
+    lager:info("started"),
     start(normal, []). 
 
 start(_StartType, _StartArgs) ->

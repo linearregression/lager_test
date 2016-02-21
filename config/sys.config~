@@ -45,7 +45,7 @@
     ]},
     %% Lager logging configuration
     {lager, [
-        {log_root, "./log"},
+        {log_root, "./log_me"},
         {error_logger_hwm, 8192},
         {colored, false},
         {crash_log, "crash.log"},
@@ -55,7 +55,7 @@
             {lager_filter_log_lager_event, [
                 {handlers, [{lager_file_backend, [
                     {file, "filter.log"}, {level, info}, {formatter, lager_default_formatter},
-                    {formatter_config, ["[", date, " ", time, "] severity=", severity, " module=", module, " node=", node, " pid=\"", pid, "\" ", message, "\n"]}]}
+                    {formatter_config, ["[", date, " ", time, "] severityfilter=", severity, " module=", module, " function=", function, " node=", node, " pid=\"", pid, "\" ", message, "\n"]}]}
                 ]},
                 {async_threshold, 500},
                 {async_threshold_window, 50}
@@ -63,7 +63,7 @@
             {lager_test_spine_log_lager_event, [
                 {handlers, [{lager_file_backend, [
                     {file, "spine.log"}, {level, info}, {formatter, lager_default_formatter},
-                    {formatter_config, ["[", date, " ", time, "] severity=", severity, " module=", module, " node=", node, " pid=\"", pid, "\" ", message, "\n"]}]}
+                    {formatter_config, ["[", date, " ", time, "] severityspine=", severity, " module=", module, " function=", function, " node=", node, " pid=\"", pid, "\" ", message, "\n"]}]}
                 ]},
                 {async_threshold, 500},
                 {async_threshold_window, 50}
@@ -71,16 +71,20 @@
             {lager_test_rpc_log_lager_event, [
                 {handlers, [{lager_file_backend, [
                     {file, "rpc.log"}, {level, info}, {formatter, lager_default_formatter},
-                    {formatter_config, ["[", date, " ", time, "] severity=", severity, " module=", module, " node=", node, " pid=\"", pid, "\" ", message, "\n"]}]}
+                    {formatter_config, ["[", date, " ", time, "] severityrpc=", severity, " module=", module, " function=", function, " node=",  node, " pid=", pid, " ", message, "\n"]}]}
                 ]},
                 {async_threshold, 500},
                 {async_threshold_window, 50}
             ]}
         ]},
-        {handlers, [{lager_file_backend, [
+        {handlers, [
+          {lager_console_backend, [info, {lager_default_formatter, [date,"#",time,"#",severity,"#",node,"#",pid,"#",module,"#",function,"#",file,"#",line,"#",message,"\r\n"]}]},
+          {lager_file_backend, [
             {file, "service.log"}, {level, info}, {formatter, lager_default_formatter}, {size, 0}, {date, "$D0"}, {count, 7},
-                {formatter_config, ["[", date, " ", time, "] severity=", severity, " module=", {module, "lager_test"}, " pid=\"", pid, "\" ", message, "\n"]}
+                {formatter_config, ["[", date, " ", time, "] severityfbkend=", severity, " module=", module," function=", function, " "," pid=", pid, " ", message, "\n"]}
             ]}
+
+
         ]}
     ]}
 ].
