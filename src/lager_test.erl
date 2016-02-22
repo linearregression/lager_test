@@ -19,7 +19,7 @@ start()->
     start(normal, []). 
 
 start(_StartType, _StartArgs) ->
-    lager:info("started/2"),
+    lager:info([{event, <<"started">>}, {{count, "badarg"}, 1}], "failed to parse: ~p", [daaafafff]),
     lager_test_sup:start_link().
 
 %%--------------------------------------------------------------------

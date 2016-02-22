@@ -21,7 +21,7 @@ start()->
     application:start(?MODULE). 
 
 start(_StartType, _StartArgs) ->
-    lager:info("started/2"),
+    lager:info([{event, <<"started">>}], "Wawawawawa sing: ~s", [<<"daaafafff">>]),
     lager_test_sup:start_link().
 
 %%--------------------------------------------------------------------
