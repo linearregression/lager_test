@@ -14,11 +14,12 @@
 %%====================================================================
 
 start()->
-    lager:start(),
-    lager:info("started"),
+    ok = lager:start(),
+    lager:info("started/0"),
     start(normal, []). 
 
 start(_StartType, _StartArgs) ->
+    lager:info("started/2"),
     lager_test_sup:start_link().
 
 %%--------------------------------------------------------------------

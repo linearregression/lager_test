@@ -17,9 +17,11 @@
 
 start()->
     lager:start(),
+    lager:info("started/0"),
     application:start(?MODULE). 
 
 start(_StartType, _StartArgs) ->
+    lager:info("started/2"),
     lager_test_sup:start_link().
 
 %%--------------------------------------------------------------------
