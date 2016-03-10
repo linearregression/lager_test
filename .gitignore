@@ -13,11 +13,9 @@ _*
 rebar.lock
 ebin
 log
-log_me
 erl_crash.dump
 .rebar
 _rel
-_build
 _deps
 _plugins
 _tdeps
