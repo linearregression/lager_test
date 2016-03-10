@@ -11,6 +11,8 @@
 -export([start/0, start/2
         , stop/0, stop/1]).
 
+-define(APPLICATION, lager_test).
+
 %%====================================================================
 %% API
 %%====================================================================
@@ -22,6 +24,7 @@ start()->
 
 start(_StartType, _StartArgs) ->
     lager:info([{event, <<"started">>}], "Wawawawawa sing: ~s", [<<"daaafafff">>]),
+    ok = exometer:register_application(?APPLICATION),
     lager_test_sup:start_link().
 
 %%--------------------------------------------------------------------
